@@ -1,0 +1,8 @@
+.img-cropped {
+    /* Se utiliza object-fit: cover para que la imagen ocupe la dimension especificada */
+    object-fit: cover;
+    /* Se utiliza object-position: center center para que el espacio ocupado sea el centro de la imagen */
+    object-position: center center;
+    width: 400px;
+    height: 400px;
+}
