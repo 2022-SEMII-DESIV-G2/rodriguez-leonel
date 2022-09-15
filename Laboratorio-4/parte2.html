@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <title>Laboratorio #4 Parte 2</title>
+</head>
+<body style="font-family: 'Montserrat', sans-serif";>
+    <nav align="center">
+        <h1>Leonel Rodríguez</h1>
+        <h2>8-905-1310</h2>
+        <p>Laboratorio #4 Parte 2</p>
+        <p><i>"Implementación de formularios con dos inputs y resultado visualizado en consola."</i></p>
+    </nav>
+    <hr>
+    <section align="center">
+        <form onsubmit="console.log('Coreo: ' + correo.value + '\nContraseña: ' + contrasena.value); return false">
+            <p>Ingresar Correo Electronico:</p>
+            <input type="text" id="correo" placeholder="micorreo@correo.com">
+            <p>Ingrese Contraseña:</p>
+            <input type="password" id="contrasena" placeholder="contraseña">
+            <p><button type="submit">Login</button></p>
+        </form>
+    </section>
+    
+
+</body>
+</html>
