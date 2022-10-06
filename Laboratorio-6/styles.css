@@ -1,0 +1,24 @@
+h1 {
+    font-family : Georgia, 'Times New Roman', Times, serif;
+    color : #375e97
+}
+h2 {
+    font-size: 14px;
+    color : #999999 
+}
+hr {
+    color : #375e97
+}
+.enlace {
+    color : #fb6542
+}
+.content {
+    font-family : Arial, Helvetica, sans-serif;
+}
+.caja {
+    width: 32vw;
+    height: 45vh;
+    margin: 10px;
+    padding: 25px;
+    border: 1px solid black;
+}
