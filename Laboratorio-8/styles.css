@@ -1,0 +1,91 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    color: white;
+}
+
+h1 {
+    padding-bottom: 40px;
+    font-size: 25px;
+}
+
+h3 {
+    color: black;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+.caja {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 5px;
+    height: 40vh;
+    width: 37vw;
+    background-color: #023361;
+}
+
+.container {
+    height: 35vh;
+    width: 30vw;
+}
+
+.margin {
+    margin: 10px;
+}
+
+.justified {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.jbutton{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+}
+
+.label {
+    align-items: flex-start;
+    font-size: 11px;
+}
+
+.bcalc {
+    border: none;
+    border-radius: 5px;
+    color: white;
+    background-color: #0085ff;
+    padding: 10px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+
+.blimp {
+    border: none;
+    border-radius: 5px;
+    color: white;
+    background-color: #ff0000;
+    padding: 10px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
