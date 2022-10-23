@@ -1,3 +1,82 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    color: black;
+}
+
+h3 {
+    margin: 5px;
+    color: black;
+}
+
 .mayor {
     color : red;
+}
+
+.fila {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.exp {
+    display: flex;
+    align-items: center;
+    justify-content: baseline;
+    flex-direction: column;
+    width: 80vw;
+}
+
+.matriz {
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: none;
+    height: max-content;
+    width: 80vw;
+}
+
+.valor {
+    margin: 5px;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 2px;
+    height: 35px;
+    width: 45px;
+    background-color: #d9d9d9;
+}
+
+.mayor {
+    margin: 5px;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 2px;
+    height: 35px;
+    width: 45px;
+    background-color: #fb8888;    
+}
+
+.nulo {
+    margin: 5px;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 2px;
+    height: 35px;
+    width: 45px;
+    background-color: black; 
 }

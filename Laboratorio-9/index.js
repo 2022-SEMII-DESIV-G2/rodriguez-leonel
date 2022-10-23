@@ -13,7 +13,7 @@ function NUMbutton(){
         i = 0
         let x = 0;
         numero = "";
-        final = final + "String Size: " + txt.length + "<br>";
+        final = final + "<h3>String Size: " + txt.length + "</h3>";
         while (x < txt.length) {
             char = txt.charAt(x);
             numero = numero + char;
@@ -37,7 +37,7 @@ function NUMbutton(){
         }
         pisos = piso;
         iteraciones = Math.pow( 2 , pisos - 1);
-        final = final + "Pisos: " + piso + "  Iteraciones: " + iteraciones + "<br><br>";
+        final = final + "<h3>Pisos: " + piso + "  Iteraciones: " + iteraciones + "</h3>";
         let h = 0;
         let y = 0;
         let z = 0;
@@ -50,36 +50,36 @@ function NUMbutton(){
             posi = 0;
             piso = 1
             if (h == 0) {
-                final = final + "Itera #" + h + ": ";
-                final = final + "<br> Piso 0 = " + rutas[h][0] + "<br>";
+                final = final + "<h3>Iteracion #" + (h + 1) + ": </h3>";
+                // final = final + "<br> Piso 0 = " + rutas[h][0] + "<br>";
                 while (piso < pisos) {
                     rutas[h][piso] = base[piso][0];
-                    final = final + "Piso  " + piso + " = " + rutas[h][piso] + " <br>"
+                    // final = final + "Piso  " + piso + " = " + rutas[h][piso] + " <br>"
                     piso++;
                 }
-                final = final + " Se borra elemento: " + base[pisos - 1][h] + "<br>";
+                final = final + "<h3>Se borra elemento: " + base[pisos - 1][h] + "</h3>";
                 base[pisos - 1][h] = null;
             }
             if (h == 1) {
-                final = final + "Itera #" + h + ": ";
-                final = final + "<br> Piso 0 = " + rutas[h][0] + "<br>";
+                final = final + "<h3>Itera #" + h + ": </h3>";
+                // final = final + "<br> Piso 0 = " + rutas[h][0] + "<br>";
                 while (piso < pisos) {
                     rutas[h][piso] = base[piso][0];
                     piso++;
                     if (piso == pisos) {
                         rutas[h][piso - 1] = base[piso - 1][1];
                     }
-                    final = final + "Piso  " + (piso - 1) + " = " + rutas[h][piso - 1] + " <br>"
+                    // final = final + "Piso  " + (piso - 1) + " = " + rutas[h][piso - 1] + " <br>"
                 }
                 base[pisos - 2][h - 1] = null;
-                final = final + " Se borra ningun elemento.<br>";                
+                final = final + "<h3>Se borra ningun elemento.</h3>";                
                 i = 0;
             }
             if (h > 1) {
-                final = final + "Itera #" + h + ": <br>";
-                final = final + rutas[h][0];
+                final = final + "<h3>Iteracion #" + (h + 1) + ": </h3>";
+                final = final + "<div class=exp><div class=valor>" + rutas[h][0] + "</div>";
                 while (piso < pisos){
-                   if (base[piso][posi]){
+                    if (base[piso][posi]){
                         if (i < 2){
                             rutas[h][piso] = base[piso][posi];
                             piso++;
@@ -89,11 +89,11 @@ function NUMbutton(){
                                 }
                                 i = i + 1;
                             }
-                            final = final + rutas[h][piso - 1];
+                            final = final + "<div class=valor>" + rutas[h][piso - 1] + "</div>";
                         }
                         if (i == 2) {
                             if (piso == pisos){
-                                final = final + "<br>Ultima fila, i == 2 eliminar " + base[piso - 2][posi] + "[" + (piso - 2) + "," + posi + "]<br>";
+                                final = final + "<h3>Ultima fila, i == 2 eliminar " + base[piso - 2][posi] + "[" + (piso - 2) + "," + posi + "].</h3>";
                                 base[piso - 2][posi] = null;
                                 i = 0;
                                 posi = 0;
@@ -102,30 +102,33 @@ function NUMbutton(){
                     }
                     else {
                         if (base[piso][posi + 1]) {
-                            final = final  + "<br>[" + piso + "," + posi + "] no existe, cambiamos a [" + piso + "," + (posi + 1) + "]: " + base[piso][posi + 1] + "<br>"
+                            final = final  + "</div><div class=exp><h3>[" + piso + "," + posi + "] no existe, cambiamos a [" + piso + "," + (posi + 1) + "]:</h3><div class=valor>" + base[piso][posi + 1] + "</div></div>"
                             posi = posi + 1;
                         }
                         else {
+                            final = final + "<div class=exp>";
                             base[piso][posi + 1] = bcon[piso][posi + 1];
-                            final = final  + "<br>[" + piso + "," + posi + "] no existe,  nodo adjacente tampoco existe [" + piso + "," + (posi + 1) + "]. Se borra [" + (piso - 1) + "," + posi + "]: " + base[piso - 1][posi] + ", se restaura: [" + piso + "," + (posi + 1) + "]:" + base[piso][posi + 1] + "<br>";
+                            final = final  + "<h3>[" + piso + "," + posi + "] no existe,  nodo adjacente tampoco existe [" + piso + "," + (posi + 1) + "]. Se borra [" + (piso - 1) + "," + posi + "]: " + base[piso - 1][posi] + ", se restaura: [" + piso + "," + (posi + 1) + "]:" + base[piso][posi + 1] + "</h3>";
                             if (posi == statposi) {
                                 if (piso == statpiso){
                                     statpiso = statpiso + 1;
                                     statposi = statposi + 1;
-                                    final = final + "<br><u>No hay mas valores posibles</u> en posicion: " + posi + " ya que se elimino [" + (piso - 1) + "," + posi + "] nueva posicion de restauracion: " + statposi + " proximo por eliminar: [" + statpiso + "," + statposi + "].<br>";
+                                    final = final + "<h3><u>No hay mas valores posibles</u> en posicion: " + posi + " ya que se elimino [" + (piso - 1) + "," + posi + "] nueva posicion de restauracion: " + statposi + " proximo por eliminar: [" + statpiso + "," + statposi + "].</h3>";
                                 }
-                                final = final + "Restauracion <br>";
+                                final = final + "<div class=matriz><h3>Restauracion</h3>";
                                 y = statposi - 1;
                                 while (y < pisos) {
                                     z = statpiso;
+                                    final = final + "<div class=fila>";
                                     while(z <= y){
                                         base[y][z] = bcon[y][z];
-                                        final = final + base[y][z] + " ";
+                                        // final = final + "<div class=valor>" + base[y][z] + "</div>";
                                         z++;
                                     }
-                                    final = final + "<br>";
+                                    final = final + "</div>";
                                     y++;
                                 }
+                                final = final + "</div>";
                             }
                             if (piso != statposi) {
                                 final = final + "<u>BORRE " + base[piso - 1][posi] + " </u><br>";
@@ -133,45 +136,65 @@ function NUMbutton(){
                             }
                             piso = 1;
                             posi = 0;
+                            final = final + "</div>";
                         }
                     }
-        }
-                                
+                }
+                
             }
-            final = final + "<br>";
+
+            // final = final + "<div class=matriz> <h3>Interpretacion #" + (h + 1) + " del la matriz.</h3>";
+            // y = 0;
+            // while (y < pisos) {
+            //     z = 0;
+            //     final = final + "<div class=fila>";
+            //     while (z <= y) {
+            //         if (base[y][z]) {
+            //             final = final + "<div class=valor>" + base[y][z] + "</div>";
+            //         }
+            //         else {
+            //             final = final + "<div class=nulo>0</div>"; 
+            //         }
+            //         z++;
+            //     }
+            //     final = final + "</div> "
+            //     y++;
+            // }       
+
+            // final = final + "</div>";
             h = h + 1;
         }
         
         
 
-        final = final + "<br>Matriz base<br>";
-        y = 0;
-        while (y < pisos) {
-            z = 0;
-            while (z <= y) {
-                if (base[y][z]) {
-                    final = final + base[y][z] + " ";
-                }
-                else {
-                    final = final + "* "; 
-                }
-                z++;
-            }
-            final = final + "<br> "
-            y++;
-        }
+        // final = final + "<br>Matriz base<br>";
+        // y = 0;
+        // while (y < pisos) {
+        //     z = 0;
+        //     while (z <= y) {
+        //         if (base[y][z]) {
+        //             final = final + base[y][z] + " ";
+        //         }
+        //         else {
+        //             final = final + "* "; 
+        //         }
+        //         z++;
+        //     }
+        //     final = final + "<br> "
+        //     y++;
+        // }
 
-        final = final + "<br>Matriz bcon<br>";
-        y = 0;
-        while (y <= pisos) {
-            z = 0;
-            while (bcon[y][z]) {
-                final = final + bcon[y][z] + " ";
-                z++;
-            }
-            final = final + "<br>"
-            y++;
-        }
+        // final = final + "<br>Matriz bcon<br>";
+        // y = 0;
+        // while (y <= pisos) {
+        //     z = 0;
+        //     while (bcon[y][z]) {
+        //         final = final + bcon[y][z] + " ";
+        //         z++;
+        //     }
+        //     final = final + "<br>"
+        //     y++;
+        // }
 
         final = final + "<br>Rutas<br>";
         y = 0;
@@ -179,12 +202,12 @@ function NUMbutton(){
             z = 0;
             rutas[y][pisos] = 0;
             while (z < pisos) {
-                final = final + rutas[y][z] + " ";
+                // final = final + rutas[y][z] + " ";
                 rutas[y][pisos] = parseInt(rutas[y][pisos]) + parseInt(rutas[y][z]);
                 z++;
             }
             // final = final + "Suma: " + rutas[y][z] + " ";
-            final = final + "<br>"
+            // final = final + "<br>"
             y++;
         }
 
@@ -197,31 +220,33 @@ function NUMbutton(){
             y++;
         }
 
-        final = final + "<br>Ruta mas pesada:<br>";
+        final = final + "<h3>Ruta mas pesada:</h3>";
 
         y = 0;
         while (y < pisos) {
             final = final + rutas[mayor][y] + " ";
             y++;
         }
-        final = final + " sumatoria total: " + rutas[mayor][y] + " ID: " + (mayor + 1) + "/" + iteraciones + ". <br>";
+        final = final + "<h3>Sumatoria total: " + rutas[mayor][y] + " ID: " + (mayor + 1) + "/" + iteraciones + ". </h3>";
         
-        final = final + "<br>Ruta mas pesada:<br>";
+        final = final + "<div class=matriz><h3>Ruta mas pesada:</h3>";
         y = 0;
         while (y <= pisos) {
             z = 0;
+            final = final + "<div class=fila>";
             while (bcon[y][z]) {
                 if (bcon[y][z] == rutas[mayor][y]){
-                    final = final + "&nbsp<u class=mayor>" + bcon[y][z] + "</u>&nbsp";                    
+                    final = final + "<div class=mayor>" + bcon[y][z] + "</div>";                    
                 }
                 else {
-                    final = final + "&nbsp" + bcon[y][z] + "&nbsp";
+                    final = final + "<div class=valor>" + bcon[y][z] + "</div>";
                 }
                 z++;
             }
-            final = final + "<br>"
+            final = final + "</div>"
             y++;
         }
+        final = final + "</div>";
         
         rest.innerHTML = final
     }
