@@ -4,7 +4,7 @@ var bcon = [];
 var pisos = 0;
 var rutas = [];
 var justin = false;
-// var final = "";
+var final = "";
 var iteraciones;
 
 function printMatrix(matrix, pisos, rutas, mayor) {
@@ -69,6 +69,9 @@ function DESPbutton() {
         base[0] = [];
         bcon[0] = [];
         espacio = 0;
+        cant = 0;
+        valores = 0;
+        num = true;
         piso = 0;
         i = 0;
         let x = 0;
@@ -77,16 +80,23 @@ function DESPbutton() {
             char = txt.charAt(x);
             numero = numero + char;
             if (char == " ") {
-                base[piso][i] = numero;
-                bcon[piso][i] = numero;
-                numero = "";
-                espacio++;
-                if (espacio > piso) {
-                    piso++;
-                    base[piso] = [];
-                    bcon[piso] = [];
-                    espacio = 0;
-                    i = 0;
+                    if ((parseInt(numero) > 0) || (parseInt(numero) <= 0)) {
+                        cant++;
+                    }
+                    else {
+                        num = false;
+                    }
+                    base[piso][i] = numero;
+                    bcon[piso][i] = numero;
+                    numero = "";
+                    espacio++;
+                    if (espacio > piso) {
+                        valores = valores + piso;
+                        piso++;
+                        base[piso] = [];
+                        bcon[piso] = [];
+                        espacio = 0;
+                        i = 0;
                 }
                 else {
                     i++;
@@ -94,11 +104,28 @@ function DESPbutton() {
             }
             x++;
         }
-        pisos = piso;
-        iteraciones = Math.pow(2, pisos - 1);
-        final = "<div class=exp><h3>Cantidad de pisos: " + pisos + ", Interaciones posibles: " + iteraciones + "</h3></div><div class=matriz>";
-        final = final + printMatrix(bcon, pisos);
-        final = final + "</div>";
+        valores = valores + piso;
+        final = "final" +  piso + ", " + valores + ", " + cant + ", " + num;
+        if (!num) {
+            final = final + "<div class=exp><h3>Hay datos no numericos o hay espacios demas. Los datos no se pueden tomar.</h3></div>";
+            rest.innerHTML = final;
+        }
+        else if (valores != cant){
+            valores = valores + piso;
+            final = final + "<div class=exp><h3>Hacen faltan mas datos para completar la piramide. Datos adicionales necesarios: </h3><div class=valor>" + ((valores - cant) + 1) + "</div></h3></div>";
+            rest.innerHTML = final;
+        }
+        else {
+            pisos = piso;
+            iteraciones = Math.pow(2, pisos - 1);
+            final = final + "<div class=exp><h3>Cantidad de pisos: " + pisos + ", Interaciones posibles: " + iteraciones + "</h3></div><div class=matriz>";
+            final = final + printMatrix(bcon, pisos);
+            final = final + "</div>";
+            rest.innerHTML = final;
+        }
+    }
+    else {
+        final = "<div class=exp><h3>No hay datos para tomar.</h3></div>";
         rest.innerHTML = final;
     }
 }
@@ -256,7 +283,7 @@ function MAYORbutton() {
         final = "</div><div clas=exp><h3>Ruta mas pesada:</h3><div><div class=exp>";
         y = 0;
         while (y < pisos) {
-            final = final + "<div class=valor>" + rutas[mayor][y] + "</div>";
+            final = final + "<div class=mayor>" + rutas[mayor][y] + "</div>";
             y++;
         }
         final = final + "</div><div class=exp><h3>Sumatoria total: " + rutas[mayor][y] + " ID: " + (mayor + 1) + "/" + iteraciones + ". </h3></div><div class=matriz><h3>Ruta mas pesada:</h3>";
