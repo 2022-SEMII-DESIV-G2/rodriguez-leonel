@@ -12,7 +12,7 @@ body {
 
 html {
     width: 100%;
-    height: 100%;
+    height: max-content;
 }
 
 h1 {
@@ -38,12 +38,19 @@ h3 {
     justify-content: center;
     align-items: center;
 }
+.cajaexp {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+
+}
 
 .exp {
     display: flex;
     align-items: center;
     justify-content: baseline;
-    flex-direction: column;
+    flex-direction: row;
     width: 80vw;
 }
 
@@ -83,15 +90,16 @@ h3 {
 }
 
 .caja {
+    border-color: black;
     margin: 10px;
+    padding-top: 30px;
     color: black;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: none;
     border-radius: 10px;
-    height: 40vw;
-    width: 80vw;
+    height: max-content;
+    width: 85vw;
     /* background-color: #647394; */
     background-color: #f2ece7;
 }
