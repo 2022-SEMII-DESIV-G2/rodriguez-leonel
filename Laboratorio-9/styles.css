@@ -122,8 +122,7 @@ h3 {
     display: flex;
     justify-content: space-around;
     align-items: flex-end;
-    margin: 10px;
-    padding-top: 55px;
+    margin: 5px;
 }
 
 .desp {
@@ -168,7 +167,7 @@ h3 {
     cursor: pointer;
 }
 
-.mayor {
+.red {
     margin: 5px;
     color: black;
     display: flex;
@@ -179,6 +178,19 @@ h3 {
     height: 35px;
     width: 45px;
     background-color: #fb8888;    
+}
+
+.green {
+    margin: 5px;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 2px;
+    height: 35px;
+    width: 45px;
+    background-color: #71ec90;    
 }
 
 .nulo {
