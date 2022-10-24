@@ -125,7 +125,7 @@ h3 {
     margin: 5px;
 }
 
-.desp {
+.opci1 {
     border-color: black;
     border-radius: 5px;
     color: white;
@@ -139,21 +139,7 @@ h3 {
     cursor: pointer;
 }
 
-.justificacion {
-    border-color: black;
-    border-radius: 5px;
-    color: white;
-    background-color: #d8d8d8;
-    padding: 10px 30px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 20px;
-    margin: 4px 2px;
-    cursor: pointer;
-}
-
-.calc { 
+.opci2 { 
     border-color: black;
     border-radius: 5px;
     color: white;
@@ -165,6 +151,7 @@ h3 {
     font-size: 20px;
     margin: 4px 2px;
     cursor: pointer;
+    visibility: visible;
 }
 
 .red {

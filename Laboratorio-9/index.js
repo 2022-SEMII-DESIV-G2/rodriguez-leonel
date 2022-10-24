@@ -3,10 +3,12 @@ var base = [];
 var bcon = [];
 var pisos = 0;
 var rutas = [];
-var justin = false;
 var final = "";
 var iteraciones;
-var sbs = "";
+var txtdesp = "";
+var txtrutas = "";
+var txtitera = "";
+var txtmayor = "";
 
 function printMatrix(matrix, pisos, rutas, mayor, color) {
     let y = 0;
@@ -51,11 +53,8 @@ function printArray(param, max, color) {
         }
         return text;
 }
-// function JUSTbutton() {
-//     WIP
-// }
 
-function DESPbutton() {
+function CALCbutton() {
     txt = document.getElementById("NUMinput").value;
     txt = txt + " ";
     if (txt) {
@@ -113,7 +112,11 @@ function DESPbutton() {
             final = "<h3>Cantidad de pisos: " + pisos + "</h3><h3>Interaciones posibles: " + iteraciones + "</h3><div class=matriz>";
             final = final + printMatrix(bcon, pisos);
             final = final + "</div>";
-            rest.innerHTML = final;
+            txtdesp = final;
+            funcCalc();
+            funcMayor();
+            funcRutas();
+            DESPbutton();
         }
     }
     else {
@@ -122,7 +125,7 @@ function DESPbutton() {
     }
 }
 
-function CALCbutton() {
+function funcCalc() {
     let h = 0;
     let y = 0;
     let z = 0;
@@ -172,7 +175,7 @@ function CALCbutton() {
                     }
                     if (i == 2) {
                         if (piso == pisos) {
-                            final = final + "</div><div class=exp><h3>Ultima fila, i == 2 eliminar " + base[piso - 2][posi] + "[" + (piso - 2) + "," + posi + "].</h3></div><div class=exp>";
+                            final = final + "</div><div class=exp><h3>Ultima fila y ultimo valor posible de nodo</h3><div class=valor>" + base[piso - 2][posi] + "</div><h3> se elimina</h3><div class=valor>" + base[piso - 2][posi] + "</div></div><div class=exp>";
                             base[piso - 2][posi] = null;
                             i = 0;
                             posi = 0;
@@ -204,7 +207,7 @@ function CALCbutton() {
                             if ((piso - 1) == statpiso) {
                                 statpiso = statpiso + 1;
                                 statposi = statposi + 1;
-                                final = final + "<h3><u>No hay mas valores posibles</u> con: <div class=valor>" + base[piso - 1][posi] + "</div> ya que se elimino [" + (piso - 1) + "," + posi + "] nueva posicion de restauracion: " + statposi + " proximo por eliminar: [" + statpiso + "," + statposi + "].</h3>";
+                                final = final + "<div class=exp><h3><u>No hay mas valores posibles</u> con:<h3><div class=valor>" + base[piso - 1][posi] + "</div></div><div class=exp><h3>Al eliminarse</h3><div class=valor>" + base[piso - 1][posi] + "</div><h3>nueva posicion de restauracion de valores: " + statposi + " proximo valor a eliminar:</h3><div class=valor>" + base[statpiso][statposi] + "</div></div>";
                             }
                             final = final + "</div><div class=exp>";
                         }
@@ -223,34 +226,29 @@ function CALCbutton() {
         final = final + "</div><div class=exp>";
         h = h + 1;
     }
-    sbs = final + "</div></div>"; // cajaexp
-    rest.innerHTML = final;
+    txtitera = final + "</div></div>"; // cajaexp
 }
 
-function EXPbutton(){
+function funcRutas(){
     let h = 0;
     let x = 0
-    final = "<div class=exp>Rutas posibles.</div><div class=matriz";
+    txtrutas = "<div class=exp><h3>Rutas posibles.</h3></div><div class=matriz";
     while (h < iteraciones) {
-        final = final + "<h3>Iteracion #" + (h + 1) + ":</h3><div class=exp>" + printArray(rutas[h],pisos,"green") + "</div><h3>Representacion</h3></div>" + printMatrix(bcon,pisos,rutas,h,"green");
+        txtrutas = txtrutas + "<div class=exp><h3>Iteracion #" + (h + 1) + ":</h3></div><div class=exp>" + printArray(rutas[h],pisos,"green") + "</div><h3>Representacion</h3></div>" + printMatrix(bcon,pisos,rutas,h,"green");
         h++;
     }
-    final = final + "</div>";
-    rest.innerHTML = final;
+    txtrutas = txtrutas + "</div>";
 }
 
-function MAYORbutton() {
+function funcMayor() {
     let y = 0;
         while (y < iteraciones) {
             let z = 0;
             rutas[y][pisos] = 0;
             while (z < pisos) {
-                // final = final + rutas[y][z] + " ";
                 rutas[y][pisos] = parseInt(rutas[y][pisos]) + parseInt(rutas[y][z]);
                 z++;
             }
-            // final = final + "Suma: " + rutas[y][z] + " ";
-            // final = final + "<br>"
             y++;
         }
 
@@ -262,9 +260,24 @@ function MAYORbutton() {
             }
             y++;
         }
-        final = "</div><div clas=exp><h3>Ruta mas pesada:</h3><div><div class=exp>";
-        final = final + printArray(rutas[mayor],pisos,"red");
-        final = final + "</div><div class=exp><h3>Sumatoria total: " + rutas[mayor][y] + " ID: " + (mayor + 1) + "/" + iteraciones + ". </h3></div><div class=matriz><h3>Ruta mas pesada:</h3>";
-        final = final + printMatrix(bcon,pisos,rutas,mayor,"red");
-        rest.innerHTML = final;
+        txtmayor = "</div><div clas=exp><h3>Ruta mas pesada:</h3><div><div class=exp>";
+        txtmayor = txtmayor + printArray(rutas[mayor],pisos,"red");
+        txtmayor = txtmayor + "</div><div class=exp><h3>Sumatoria total: " + rutas[mayor][pisos] + " Iteracion: " + (mayor + 1) + "/" + iteraciones + ". </h3></div><div class=matriz><h3>Ruta mas pesada:</h3>";
+        txtmayor = txtmayor + printMatrix(bcon,pisos,rutas,mayor,"red");
+}
+
+function DESPbutton() {
+    rest.innerHTML = txtdesp;
+}
+
+function RUTAbutton() {
+    rest.innerHTML = txtrutas;
+}
+
+function EXPbutton() {
+    rest.innerHTML = txtitera;
+}
+
+function MAYORbutton() {
+    rest.innerHTML = txtmayor;
 }
