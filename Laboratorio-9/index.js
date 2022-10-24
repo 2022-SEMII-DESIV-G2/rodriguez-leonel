@@ -33,34 +33,9 @@ function printMatrix(matrix, pisos, rutas, mayor) {
     return text;
 }
 
-function JUSTbutton() {
-    if (justin) {
-        const estilo = `
-        align-items: center;
-        `;
-        const color = `
-        background-color: #5db560;
-        `;
-        const matriz = document.querySelector(".matriz");
-        const justificacion = document.querySelector(".justificacion");
-        matriz.style.cssText = estilo;
-        justificacion.style.cssText = color;
-        justin = false;
-    }
-    else {
-        const estilo = `
-        align-items: flex-start;
-        `;
-        const color = `
-        background-color: #d8d8d8;
-        `;
-        const matriz = document.querySelector(".matriz");
-        const justificacion = document.querySelector(".justificacion");
-        matriz.style.cssText = estilo;
-        justificacion.style.cssText = color;
-        justin = true;
-    }
-}
+// function JUSTbutton() {
+//     WIP
+// }
 
 function DESPbutton() {
     txt = document.getElementById("NUMinput").value;
