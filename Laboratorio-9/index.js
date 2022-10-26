@@ -116,7 +116,7 @@ function CALCbutton() {
             funcCalc();
             funcMayor();
             funcRutas();
-            DESPbutton();
+            rest.innerHTML = txtmayor;
         }
     }
     else {
