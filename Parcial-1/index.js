@@ -1,4 +1,3 @@
-
 (() => {
     const  Algorithm = {
         htmlElements: {
@@ -20,7 +19,6 @@
                 Algorithm.methods.getValues(Algorithm.htmlElements.input.value + " ")
             },
             getValues(text) {
-                // text = Algorithm.htmlElements.input.value + " ";
                 pyramid = [];
                 floor = 0;
                 pyramid[floor] = [];
@@ -45,15 +43,13 @@
                         }
                     }
                 }
-                text = Algorithm.methods.printMatrix(pyramid, floor);
-                // Algorithm.htmlElements.result.innerHTML = floor
-                // Algorithm.htmlElements.result.innerHTML = Algorithm.methods.printMatrix(pyramid);
-                // Algorithm.htmlElements.result.innerHTML = Algorithm.methods.printMatrix(pyramid) + "<br>" + Algorithm.methods.allRoutes(pyramid)
-                // Algorithm.htmlElements.result.innerHTML = Algorithm.methods.printAllRoutes(Algorithm.methods.allRoutes(pyramid, floor));
-                
-                allroutes = Algorithm.methods.allRoutes(pyramid, floor)
-                // Algorithm.htmlElements.result.innerHTML =  Algorithm.methods.bestRoute(allroutes)
-                Algorithm.htmlElements.result.innerHTML = text + Algorithm.methods.printSingleRoute(allroutes, Algorithm.methods.bestRoute(allroutes), "red");
+                backup = Algorithm.methods.copyMatrix(pyramid, floor);
+                allroutes = Algorithm.methods.allRoutes(pyramid, floor);
+                id = Algorithm.methods.bestRoute(allroutes);
+                iterations = Math.pow(2, floor - 1);
+                sum = Algorithm.methods.sumRoute(allroutes, id);
+                text = "<div class=exp><h3>Ruta mas pesada: " + Algorithm.methods.printMatrixValue(backup, floor, allroutes[id]) + "</h3></div>";
+                Algorithm.htmlElements.result.innerHTML = text + "<div class=exp><h3>Ruta #" + id + "/" + iterations  + "</h3><div class = fila>" + Algorithm.methods.printSingleRoute(allroutes, id, "red") + "</div></div><div class=exp><h3> Sumatoria total: " + sum + "</div></h3>";
             },
             generateValues() {
                 min = parseInt(Algorithm.htmlElements.range.value);
@@ -66,9 +62,16 @@
                 }
                 Algorithm.methods.getValues(numbers);               
             },
+            sumRoute (route, id) {
+                sum = 0;
+                for (let x = 0; x < route[id].length; x++) {
+                    sum = sum + parseInt(route[id][x]);                    
+                }
+                return sum;
+            },
             allRoutes(pyramid) {
                 maxvalue = pyramid.length - 1;
-                backup = this.copyMatrix(pyramid, maxvalue);
+                backup = Algorithm.methods.copyMatrix(pyramid, maxvalue);
                 iterations = Math.pow(2, maxvalue - 1);
                 restore_position = 0;
                 restore_floor = 1;
@@ -170,12 +173,44 @@
             printMatrix(pyramid, maxvalue) {
                 text = "";
                 let y = 0;
+                text += "<div class=matriz>";
                 for (let y = 0; y < maxvalue; y++) {
+                    text += "<div class=fila>";
                     for (let x = 0; x <= y; x++) {
-                        text += pyramid[y][x] + " ";                        
+                        text += "<div class=grey>" + pyramid[y][x] + "</div>";                        
                     }
-                    text += "<br>"
+                    text += "</div>";
                 }
+                text += "</div>";
+                return text;
+            },
+            printMatrixValue(matrix, maxvalue, route) {
+                let y = 0;
+                text = "<div class=matriz>";
+                while (y <= maxvalue - 1) {
+                    let z = 0;
+                    text = text + "<div class=fila>";
+                    while (z <= y) {
+                        if (route){
+                            if (matrix[y][z] == route[y]) {
+                                text = text + "<div class=red>" + matrix[y][z] + "</div>";
+                            }
+                            else {
+                                text = text + "<div class=grey>" + matrix[y][z] + "</div>";
+                            }
+                        }
+                        else if (matrix[y][z]) {
+                            text = text + "<div class=grey>" + matrix[y][z] + "</div>";
+                        }
+                        else {
+                            text = text + "<div class=black>0</div>";
+                        }
+                            z++;
+                    }
+                    text = text + "</div>";
+                    y++;
+                }  
+                text += "</div>";
                 return text;
             }
         }
