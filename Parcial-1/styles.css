@@ -38,6 +38,7 @@ h3 {
     justify-content: center;
     align-items: center;
 }
+
 .cajaexp {
     display: flex;
     align-items: flex-start;
@@ -51,6 +52,7 @@ h3 {
     align-items: center;
     justify-content: baseline;
     flex-direction: row;
+    margin: 10px;
     width: 80vw;
 }
 
