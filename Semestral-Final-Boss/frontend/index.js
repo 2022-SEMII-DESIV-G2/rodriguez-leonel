@@ -1,5 +1,8 @@
 (() => {
     const  Algorithm = {
+        globalElements: {
+            urlId: "190.140.138.75"
+        },
         htmlElements: {
             buttoncalculate: document.getElementById("calculate"),
             input: document.getElementById("inputtext"),
@@ -9,11 +12,11 @@
             size: document.getElementById("floors"),
             result: document.getElementById("result"),
             total: document.getElementById("total"),
-            title: document.getElementById("title"),
 
         },
-        init: () => {
-            Algorithm.methods.showPyramid();
+        init: () => {   
+            Algorithm.htmlElements.buttoncalculate.addEventListener("click", Algorithm.methods.startup);
+            Algorithm.htmlElements.buttonrandomize.addEventListener("click", Algorithm.methods.generateValues);
         },
         methods: {
             startup: (e) => {
@@ -50,81 +53,11 @@
                 iterations = Math.pow(2, floor - 1);
                 sum = Algorithm.methods.sumRoute(allroutes, id);
 
-                const { data } = await axios.post('http://localhost:4567/pyramids', { datos: text, mayor: Algorithm.methods.textRoute(allroutes, id)});
+                const { data } = await axios.post('http://localhost:4567/pyramids', { datos: text, mayor: Algorithm.methods.textRoute(allroutes, id), tamano: floor, iterations: iterations, routeid: id, total: sum});
               
                 console.log({ data })
                 text = "<div class=exp><h3>Ruta mas pesada: " + Algorithm.methods.printMatrixValue(backup, floor, allroutes[id]) + "</h3></div>";
-                Algorithm.htmlElements.result.innerHTML = text + "<div class=exp><h3>Ruta #" + id + "/" + iterations  + "</h3><div class = fila>" + Algorithm.methods.printSingleRoute(allroutes, id, "red") + "</div></div><div class=exp><h3> Sumatoria total: " + sum + "</div></h3>";
-            },
-            async getPyramids(){
-                const { data } = await axios.get('http://localhost:4567/pyramids');
-                text = " ";
-                for (let render = 0; render < data.pyramids.length; render++) {
-                    text += "<a href=\"individual.html?q=\"" + data.pyramids[render].id + ">Piramide #" + data.pyramids[render].id + "</a><br>";                    
-                }
-                console.log(text);
-                Algorithm.htmlElements.total.innerHTML = text;
-            },
-            transformArray(text){
-                array = [];
-                spaces = 0;
-                index = 0;
-                number = "";
-                for (let x = 0; x < text.length; x++) {
-                    character = text.charAt(x);
-                    number += character;
-                    if (character == " ") {
-                        array[index] = number;
-                        number = "";
-                        index++;
-                    }
-                }
-                return array;
-            },
-            transformMatrix(text) {
-                pyramid = [];
-                floor = 0;
-                pyramid[floor] = [];
-                spaces = 0;
-                index = 0;
-                number = "";
-                for (let x = 0; x < text.length; x++) {
-                    character = text.charAt(x);
-                    number += character;
-                    if (character == " ") {
-                        pyramid[floor][index] = number;
-                        number = "";
-                        spaces++;
-                        if (spaces > floor) {
-                            floor++;
-                            pyramid[floor] = [];
-                            spaces = 0;
-                            index = 0;
-                        }
-                        else {
-                            index++;
-                        }
-                    }
-                }
-                return pyramid;
-            },
-            async showPyramid() {
-                const urlParams = new URLSearchParams(window.location.search);
-                const { data } = await axios.get("http://localhost:4567/pyramids/" + urlParams.get("q"));
-                pyramid = Algorithm.methods.transformMatrix(data.datos + " ");
-                route = Algorithm.methods.transformArray(data.mayor + " ");
-                result = Algorithm.methods.printMatrixValue(pyramid , false , route);
-                result += "<div class=exp><div class=fila><h3>Ruta #ID/ITERATIONS</h3>" + Algorithm.methods.printSingleRouteNew(route, "red") + "</div><h3>Sumatoria Total:ID</h3></div>";
-                
-                // "<div class=exp><h3>Ruta #" + id + "/" + iterations  + 
-                // "</h3><div class = fila>" + Algorithm.methods.printSingleRoute(allroutes, id, "red") + 
-                // "</div></div><div class=exp><h3> Sumatoria total: " + sum + "</div></h3>";
-
-                Algorithm.htmlElements.title.innerHTML = "Piramide #" + data.id
-                Algorithm.htmlElements.result.innerHTML = result;
-                
-
-                console.log(Algorithm.methods.transformArray(data.mayor + " "))
+                Algorithm.htmlElements.result.innerHTML = text + "<div class=exp><h3>Ruta #" + id + "/" + iterations  + "</h3><div class = fila>" + Algorithm.methods.printSingleRoute(allroutes, id, "red") + "</div><h3> Sumatoria total: " + sum + "</h3></div>";
             },
             generateValues() {
                 min = parseInt(Algorithm.htmlElements.range.value);
@@ -235,13 +168,6 @@
                 }
                 return copy;
             },
-            printSingleRouteNew(route, color) {
-                text = "";
-                for (let x = 0; x < route.length - 1; x++) {
-                    text += "<div class=" + color + ">" + route[x] + "</div>";                    
-                }
-                return text;
-            },
             printSingleRoute(routes, id, color) {
                 text = "";
                 for (let x = 0; x < routes[id].length; x++) {
@@ -274,9 +200,6 @@
                 return text;
             },
             printMatrixValue(matrix, maxvalue, route) {
-                if (!maxvalue) {
-                    maxvalue = matrix.length - 1;
-                }
                 let y = 0;
                 text = "<div class=matriz>";
                 while (y <= maxvalue - 1) {

@@ -37,6 +37,11 @@ h3 {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    padding-bottom: 30px;
+}
+
+a {
+    text-decoration: none;
 }
 
 .icon {
