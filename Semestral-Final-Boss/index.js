@@ -61,7 +61,14 @@
                 const { data } = await axios.get('http://localhost:4567/pyramids');
                 text = " ";
                 for (let render = 0; render < data.pyramids.length; render++) {
-                    text += "<a href=\"individual.html?q=" + data.pyramids[render].id + "\">Piramide #" + data.pyramids[render].id + "</a><br>";                    
+
+                    // <div class="enlace">
+                    //     <div class="fila"><img src="icon.png" alt="py_icon" class="icon">
+                    //     <h3><a href="">Piramide #Unico</a></h3></div>
+                    //     <h4>Tamaño:</h4><h4>Sumatoria:</h4>
+                    // </div>
+
+                    text += "<a href=\"individual.html?q=" + data.pyramids[render].id + "\"><div class=enlace><div class=fila><img src=\"icon.png\" alt=\"py_icon\" class=\"icon\"><h3>Piramide #" + data.pyramids[render].id + "</h3></div><h4>Tama;</h4><h4>Sumatoria</h4></div></a>";                    
                 }
                 console.log(text);
                 Algorithm.htmlElements.total.innerHTML = text;
