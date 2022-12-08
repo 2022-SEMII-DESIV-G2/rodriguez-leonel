@@ -63,8 +63,8 @@
                 result = Algorithm.methods.printMatrixValue(pyramid , false , route);
                 result += "<div class=exp><div class=fila><h3>Ruta #" + data.routeid + "/" + data.iterations + "</h3>" + Algorithm.methods.printSingleRouteNew(route, "red") + "</div><h3>Sumatoria Total: " + data.total + "</h3></div>";
 
-                Algorithm.htmlElements.headertitle.innerHTML = "Piramide #" + data.id
-                Algorithm.htmlElements.title.innerHTML = "Piramide #" + data.id
+                Algorithm.htmlElements.headertitle.innerHTML = "Pirámide #" + data.id
+                Algorithm.htmlElements.title.innerHTML = "Pirámide #" + data.id
                 Algorithm.htmlElements.result.innerHTML = result;
 
             },

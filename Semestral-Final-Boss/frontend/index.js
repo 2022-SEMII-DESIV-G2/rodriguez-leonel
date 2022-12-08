@@ -1,8 +1,5 @@
 (() => {
     const  Algorithm = {
-        globalElements: {
-            urlId: "190.140.138.75"
-        },
         htmlElements: {
             buttoncalculate: document.getElementById("calculate"),
             input: document.getElementById("inputtext"),
