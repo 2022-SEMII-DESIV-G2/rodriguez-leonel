@@ -1,22 +1,21 @@
 # Universidad Tecnologica de Panamá
-## Proyecto Final Semestral
-## Desarrollo de Software IV
-## Profesor: Erick Agrazal
+#### Desarrollo de Software IV
+##### **Profesor:** Erick Agrazal
 
 Integrantes:
-Leonel Rodriguez
-Ricardo Pinzón
-Oliver Quiel    
+1. Leonel Rodriguez
+2. Ricardo Pinzón
+3. Oliver Quiel    
 
 Sustentación día:
 7 de Diciembre 2022
 
-# Instructions
-## Objetivos
+## Instructions
+#### Objetivos
 Implementar un diseño usando HTML, CSS y JS.
 Aplicar programación para resolver problemas de lógica matemática.
 
-## I Parte. 
+#### I Parte. 
 
 Este semestral toma en cuenta como base el laboratorio 9 y el parcial 2. El objetivo principal es aplicar un diseño a la pirámide, el mínimo diseño requerido es el que aparece el laboratorio 9, pero se deja a discreción qué tanto más se desea mejorar el diseño.
 
